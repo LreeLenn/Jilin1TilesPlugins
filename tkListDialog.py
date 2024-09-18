@@ -25,7 +25,7 @@ class TkListDialogClass(QDialog,Ui_Jilin1TilesDialogBase):
             if "tk" in cfgDict.keys():
                 self.tkLE.setText(cfgDict["tk"])
 
-        self.tileHead = f"https://api.jl1mall.com/getMap/{z}/{x}/{-y}?mk="
+        self.tileHead = "https://api.jl1mall.com/getMap/{z}/{x}/{-y}?mk="
         self.mks = {
             "2023年度全国高质量一张图" : "73ad26c4aa6957eef051ecc5a15308b4",
             "2022年度全国高质量一张图" : "2d9bf902749f1630bc25fc720ba7c29f",
@@ -80,7 +80,7 @@ class TkListDialogClass(QDialog,Ui_Jilin1TilesDialogBase):
 
     def listViewClicked(self,modelIndex):
         currentMk = self.mks[ self.mkNames[modelIndex.row()] ]
-        wmsContent = "type=xyz&url=" + requests.utils.quote( "https://api.jl1mall.com/getMap/{z}/{x}/{-y}?mk=" + currentMk + "&tk=" + self.tkLE.text())
+        wmsContent = "type=xyz&url=" + requests.utils.quote( "https://api.jl1mall.com/getMap/{z}/{x}/{-y}?mk=" + currentMk + "&tk=" + self.tkLE.text(), safe=":/?")
 
         resLayer = QgsRasterLayer(wmsContent,self.mkNames[modelIndex.row()],'wms')
         QgsProject.instance().addMapLayer(resLayer)
