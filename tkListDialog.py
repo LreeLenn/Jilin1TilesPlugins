@@ -25,7 +25,7 @@ class TkListDialogClass(QDialog,Ui_Jilin1TilesDialogBase):
             if "tk" in cfgDict.keys():
                 self.tkLE.setText(cfgDict["tk"])
 
-        self.tileHead = "https://api.jl1mall.com/getMap/{z}/{x}/{-y}?mk="
+        self.tileHead = f"https://api.jl1mall.com/getMap/{z}/{x}/{-y}?mk="
         self.mks = {
             "2023年度全国高质量一张图" : "73ad26c4aa6957eef051ecc5a15308b4",
             "2022年度全国高质量一张图" : "2d9bf902749f1630bc25fc720ba7c29f",
